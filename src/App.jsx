@@ -3,6 +3,7 @@ import "./App.css";
 import Form from "./components/Form";
 import TransactionItem from "./components/TransactionItem";
 import { TransactionContext } from "./context/TransactionContext";
+import Charts from "./components/Charts";
 
 function App() {
 
@@ -27,7 +28,7 @@ function App() {
       dispatch({ type: "SET", payload: JSON.parse(storedItems) });
     }
   }, []);
-
+   // For uploading the data from Local Storage
 
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions));
@@ -52,7 +53,16 @@ function App() {
       </div>
 
       {/* Form */}
-      <Form />
+     <div className="flex gap-6 ml-8">
+  <div className="w-1/2">
+    <Form />
+  </div>
+
+  <div className="w-1/2">
+    <Charts />
+  </div>
+</div>
+
 
       {/* Transaction List */}
       <div className="w-full max-w-md mt-8 flex flex-col gap-3">

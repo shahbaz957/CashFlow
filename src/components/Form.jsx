@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 function Form() {
   const [type, setType] = useState("income");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(null);
   const {dispatch} = useContext(TransactionContext);
 
   const handleSubmit = (e) => {

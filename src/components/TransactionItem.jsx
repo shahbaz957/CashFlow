@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 function TransactionItem({ object }) {
   const isIncome = object.type === "income";
   const { dispatch } = useContext(TransactionContext);
+  const [editable, setEditable] = useState(false);
 
   return (
     <div
@@ -18,13 +19,26 @@ function TransactionItem({ object }) {
         {isIncome ? "Income" : "Expense"}
       </p>
 
-      <h2
+      {/* <h2
         className={`text-lg font-semibold 
         ${isIncome ? "text-green-600" : "text-red-600"}
         `}
       >
         {object.amount}
-      </h2>
+      </h2> */}
+      <div>
+        <input
+          type="number"
+          readOnly={!editable}
+          value={Number(object.amount)}
+          onChange={(e) => {
+            dispatch({ type: "EDIT", payload: {id  : object.id , amount : Number(e.target.value)}});
+          }}
+        />
+        <button onClick={() => setEditable(!editable)}>
+          {editable ? "📁" : "✏️"}
+        </button>
+      </div>
       <button onClick={() => dispatch({ type: "DELETE", payload: object.id })}>
         ❌
       </button>
