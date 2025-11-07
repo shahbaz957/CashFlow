@@ -13,7 +13,7 @@ function Form() {
             id : Date.now() , type , amount : Number(amount)
         }
     })
-    setAmount(0);
+    setAmount(null);
     setType("income");
   };
 
